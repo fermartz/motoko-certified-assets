@@ -68,7 +68,7 @@ You handle file storage yourself.
 
 ```
 
-Advanced - hashing chunks when you receive them
+### Advanced - hashing chunks when you receive them
 
 ```mo
           switch(cmd) {
