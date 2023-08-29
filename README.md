@@ -1,4 +1,4 @@
-# Certified Assets
+# Motoko Certified Assets
 
 Designed to answer HTTP cert calls
 
@@ -23,36 +23,42 @@ Instructions to run the included demo:
 
 ```mo
 
-  stable var cert_store = CertifiedHttp.init();
+  type HttpRequest = HTTP.HttpRequest;
+    type HttpResponse = HTTP.HttpResponse;
 
-  var cert = CertifiedHttp.CertifiedHttp<Text>(
-      cert_store,
-      Text.encodeUtf8,
-  );
+    let { thash; } = Map;
 
-  public shared func upload(key:Text, val:Blob) {
-      files.put(key, val);
-      cert.put(key, val);
-  };
+    stable var fields = Map.new<Text, Blob>(thash);
+    stable var cert_store = CertifiedHttp.init();
 
-  public shared func delete(key:Text) {
-      files.delete(key);
-      cert.delete(key);
-  };
+    var cert = CertifiedHttp.CertifiedHttp(cert_store);
 
-
-  public query func http_request(req : HttpRequest) : async HttpResponse {
-    let ?body = files.get(req.url) else return e404;
-
-    {
-      status_code : Nat16 = 200;
-      headers = [("content-type", "text/html"), cert.certificationHeader(req.url)];
-      body = body;
-      streaming_strategy = null;
-      upgrade = null;
+    public shared func upload(key: Text, val: Text) {
+        let blob : Blob = Text.encodeUtf8(val);
+        Map.set(fields, thash, key, blob);
+        cert.put(key, blob);
     };
 
-  };
+    public shared func delete(key: Text) {
+        Map.delete(fields, thash, key);
+        cert.delete(key);
+    };
+
+
+    public query func http_request(req : HttpRequest) : async HttpResponse {
+        let ?body = Map.get(fields, thash, req.url) else return e404;
+        Debug.print(debug_show(req.url));
+
+        {
+        status_code : Nat16 = 200;
+        headers = [("content-type", "text/html"), cert.certificationHeader(req.url)];
+        body = body;
+        streaming_strategy = null;
+        upgrade = null;
+        };
+    
+
+    };
 
 ```
 
