@@ -1,6 +1,6 @@
 # Motoko Certified Assets
 
-Designed to answer HTTP cert calls
+Designed to answer HTTP cert calls and certify assets
 
 Started from certified-http fork.
 
@@ -8,7 +8,11 @@ Similar to how certified-cache works, but it's stable and doesn't store the file
 
 You handle file storage yourself.
 
-Instructions to run the included demo:
+## Installation
+
+`mops install motoko-certified-assets`
+
+### Run the included demo
 
 - Clone repo
 - Run `mops install`
@@ -21,6 +25,8 @@ Instructions to run the included demo:
 
 ![certified-http-shot](https://github.com/fermartz/motoko-certified-assets/blob/main/certified-http.png)
 
+
+### Sample code for demo shown above
 ```mo
 
   type HttpRequest = HTTP.HttpRequest;
@@ -91,7 +97,7 @@ Advanced - hashing chunks when you receive them
           }
 ```
 
-## Credits
+# Credits
 
 - [Certified Http](https://github.com/infu/certified-http)
 - [IC Certification](https://github.com/nomeata/ic-certification)
