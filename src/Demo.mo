@@ -1,5 +1,5 @@
 import Blob "mo:base/Blob";
-import CertifiedHttp "./Lib";
+import CertifiedHttp "./Cert";
 import HTTP "./Http";
 import HashMap "mo:base/HashMap";
 import Text "mo:base/Text";
