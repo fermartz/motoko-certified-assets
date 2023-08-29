@@ -19,7 +19,7 @@ Instructions to run the included demo:
 - Visit your certified url - i.e. `http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:4943/hello`
 - Open Network console and look into the headers response. You should see an Ic-Certificate like the shot below
 
-![certified-http-shot](https://github.com/fermartz)
+![certified-http-shot](https://github.com/fermartz/motoko-certified-assets/blob/main/certified-http.png)
 
 ```mo
 
